@@ -106,9 +106,9 @@ def saveJson():
 
 
     #general kills and ratios infos
-    kills = resp.json()['all_worlds']["kills"][jsonDict["worldColor"]]
+    kills = resp.json()["kills"][jsonDict["worldColor"]]
     jsonDict["nbKills"] = kills
-    deaths = resp.json()['all_worlds']["deaths"][jsonDict["worldColor"]]
+    deaths = resp.json()["deaths"][jsonDict["worldColor"]]
     jsonDict["nbDeaths"] = deaths
     if deaths != 0:
         jsonDict["ratio"] = kills/deaths
