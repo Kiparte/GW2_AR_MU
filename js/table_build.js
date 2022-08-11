@@ -1,18 +1,11 @@
-
-/*function getJson() {
-  fetch("../results/results2022_32.json")
-  .then(function(res) {
-    if (res.ok) {
-      return res.json();
-    }
-  } .then(function (obj) {
-    document.getElementById("test_json").innerHTML = obj[1]["idWorld"];
-  } .catch(function(error) {
-    console.error("Problem with json retrieving");
+/*fs.readdir(".",function(err, list){
+  list.forEach(function(file){
+      console.log(file);
+      stats = fs.statSync(file);
+      console.log(stats.mtime);
+      console.log(stats.ctime);
   })
-  ) 
-  );
-}*/
+})*/
 
 async function loadDatas() {
   const response = await fetch('./results/results2022_32.json');
@@ -23,29 +16,47 @@ async function loadDatas() {
     results.innerHTML="";
     let sk = e.target.skirmish;
     if (sk.toString() in datas) {
+      global=document.createElement("div")
+      globalInner = document.createElement("div");
+      globalInner.innerHTML = "<ul> <li> <b>Global :</b> </li>  <li> Ratio : " + Math.round(datas[sk]["skirmishRatio"] * 100)/100 + " </li> <li> Kills : " 
+      + datas[sk]["skirmishKills"] + " </li> <li> Deaths : " 
+      + datas[sk]["skirmishDeaths"] + " </li> </ul";
+      globalInner.classList.add("col-12", "d-flex", "justify-content-center");
+      global.appendChild(globalInner);
+      global.classList.add("row");
+      results.appendChild(global);
+      
+
+      allMapresults = document.createElement("div");
       ebg = document.createElement("div");
-      ebg.innerHTML = "EBG : <ul> <li> Ratio : " + Math.round(datas[sk]["Center"]["skirmishRatio"] * 100)/100 + " </li> <li> Kills : " 
+      ebg.innerHTML = "<ul> <li><b> EBG : </b></li>  <li> Ratio : " + Math.round(datas[sk]["Center"]["skirmishRatio"] * 100)/100 + " </li> <li> Kills : " 
       + datas[sk]["Center"]["skirmishKills"] + " </li> <li> Deaths : " 
       + datas[sk]["Center"]["skirmishDeaths"] + " </li> </ul";
-      results.appendChild(ebg);
+      ebg.classList.add("col-3");
+      allMapresults.appendChild(ebg);
 
       greenH = document.createElement("div");
-      greenH.innerHTML = "Green Home : <ul> <li> Ratio : " + Math.round(datas[sk]["GreenHome"]["skirmishRatio"] * 100)/100 + " </li> <li> Kills : " 
+      greenH.innerHTML = "<ul> <li><b> Green Home : </b></li>  <li> Ratio : " + Math.round(datas[sk]["GreenHome"]["skirmishRatio"] * 100)/100 + " </li> <li> Kills : " 
       + datas[sk]["GreenHome"]["skirmishKills"] + " </li> <li> Deaths : " 
       + datas[sk]["GreenHome"]["skirmishDeaths"] + " </li> </ul";
-      results.appendChild(greenH);
+      greenH.classList.add("col-3");
+      allMapresults.appendChild(greenH);
 
       blueH = document.createElement("div");
-      blueH.innerHTML = "Blue Home : <ul> <li> Ratio : " + Math.round(datas[sk]["BlueHome"]["skirmishRatio"] * 100)/100 + " </li> <li> Kills : " 
+      blueH.innerHTML = "<ul> <li><b> Blue Home : </b></li>  <li> Ratio : " + Math.round(datas[sk]["BlueHome"]["skirmishRatio"] * 100)/100 + " </li> <li> Kills : " 
       + datas[sk]["BlueHome"]["skirmishKills"] + " </li> <li> Deaths : " 
       + datas[sk]["BlueHome"]["skirmishDeaths"] + " </li> </ul";
-      results.appendChild(blueH);
+      blueH.classList.add("col-3");
+      allMapresults.appendChild(blueH);
 
       redH = document.createElement("div");
-      redH.innerHTML = "Red Home : <ul> <li> Ratio : " + Math.round(datas[sk]["RedHome"]["skirmishRatio"] * 100)/100 + " </li> <li> Kills : " 
+      redH.innerHTML = "<ul> <li><b> Red Home : </b></li>  <li> Ratio : " + Math.round(datas[sk]["RedHome"]["skirmishRatio"] * 100)/100 + " </li> <li> Kills : " 
       + datas[sk]["RedHome"]["skirmishKills"] + " </li> <li> Deaths : " 
       + datas[sk]["RedHome"]["skirmishDeaths"] + " </li> </ul";
-      results.appendChild(redH);
+      redH.classList.add("col-3");
+      allMapresults.appendChild(redH);
+      allMapresults.classList.add("row");
+      results.appendChild(allMapresults);
     }
   }
 

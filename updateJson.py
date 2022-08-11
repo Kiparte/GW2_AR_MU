@@ -101,7 +101,6 @@ def saveJson():
     if exists("results/results" + str(year) + "_" + str(week_num) + ".json"):
         f = open("results/results" + str(year) + "_" + str(week_num) + ".json", "r")
         currentJson = json.load(f)
-        assignWinner(currentJson, resp.json())
         
 
 
@@ -115,11 +114,11 @@ def saveJson():
     else:
         jsonDict["ratio"] = kills
         
-    if skirmish == 1 or not(exists("results/results" + str(year) + "_" + str(week_num) + ".json")):
+    if skirmish == 0 or not(exists("results/results" + str(year) + "_" + str(week_num) + ".json")):
         jsonDict["skirmishKills"] = 0
         jsonDict["skirmishDeaths"] = 0
         jsonDict["skirmishRatio"] = 0
-        if skirmish == 1:
+        if skirmish == 0:
             jsonDict["nbKills"] = 0
             jsonDict["nbDeaths"] = 0
             jsonDict["ratio"] = 0
@@ -149,11 +148,11 @@ def saveJson():
         deaths = resp.json()['maps'][i]['deaths'][jsonDict["worldColor"]]
         mapDict["nbDeaths"] = deaths
         mapDict["ratio"] = round(mapDict["nbKills"]/mapDict["nbDeaths"], 3)
-        if skirmish == 1 or not(exists("results/results" + str(year) + "_" + str(week_num) + ".json")):
+        if skirmish == 0 or not(exists("results/results" + str(year) + "_" + str(week_num) + ".json")):
             mapDict["skirmishKills"] = 0
             mapDict["skirmishDeaths"] = 0
             mapDict["skirmishRatio"] = 0
-            if skirmish == 1:
+            if skirmish == 0:
                 mapDict["nbKills"] = 0
                 mapDict["nbDeaths"] = 0
                 mapDict["ratio"] = 0
@@ -177,9 +176,10 @@ def saveJson():
     
     #first skirmish we write in an empty file
     if not(exists("results/results" + str(year) + "_" + str(week_num) + ".json")):
-        f = open("results/results" + str(year) + "_" + str(week_num) + ".json","w")
         finalDict = dict()
         finalDict[skirmish] = jsonDict
+        assignWinner(finalDict, resp.json())
+        f = open("results/results" + str(year) + "_" + str(week_num) + ".json","w")
         f.write(json.dumps(finalDict, indent = 2))
         f.close()
 
@@ -187,6 +187,7 @@ def saveJson():
     #other skirmishes we append 
     else :
         currentJson[str(skirmish)] = jsonDict
+        assignWinner(currentJson, resp.json())
         #pretty ugly
         f = open ("results/results" + str(year) + "_" + str(week_num) + ".json", "w")
         f.write(json.dumps(currentJson, indent = 2))
@@ -196,6 +197,3 @@ def saveJson():
 
 if __name__ == '__main__':
     saveJson()
-    
-
-    
