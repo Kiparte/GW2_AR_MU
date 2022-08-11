@@ -58,7 +58,7 @@ async function loadDatas() {
       allMapresults.appendChild(redH);
       allMapresults.classList.add("row");
       results.appendChild(allMapresults);
-    } else if (skirmish == "-1") { //global infos, not skirmish infos
+    } else if (sk == -1) { //global infos, not skirmish infos
       var lastSkirmish = -1; 
       for (const [key, value] of Object.entries(datas)) {
         if(parseInt(key) > lastSkirmish) {
