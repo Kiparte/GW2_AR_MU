@@ -16,7 +16,8 @@ async function loadDatas() {
     results.innerHTML="";
     let sk = e.target.skirmish;
     if (sk.toString() in datas) {
-      global=document.createElement("div")
+      global=document.createElement("div");
+      global.innerHTML="<h2> Skirmish : " + e.target.skirmish + "</h2";
       globalInner = document.createElement("div");
       globalInner.innerHTML = "<ul> <li> <b>Global :</b> </li>  <li> Ratio : " + Math.round(datas[sk]["skirmishRatio"] * 100)/100 + " </li> <li> Kills : " 
       + datas[sk]["skirmishKills"] + " </li> <li> Deaths : " 
@@ -57,6 +58,59 @@ async function loadDatas() {
       allMapresults.appendChild(redH);
       allMapresults.classList.add("row");
       results.appendChild(allMapresults);
+    } else if (skirmish == "-1") { //global infos, not skirmish infos
+      var lastSkirmish = -1; 
+      for (const [key, value] of Object.entries(datas)) {
+        if(parseInt(key) > lastSkirmish) {
+          lastSkirmish = parseInt(key);
+        }
+      }
+
+      if(lastSkirmish != -1) {
+
+        global=document.createElement("div");
+        global.innerHTML="<h2> Matchup Infos </h2";
+        globalInner = document.createElement("div");
+        globalInner.innerHTML = "<ul> <li> <b>Global :</b> </li>  <li> Ratio : " + Math.round(datas[lastSkirmish]["ratio"] * 100)/100 + " </li> <li> Kills : " 
+        + datas[lastSkirmish]["nbKills"] + " </li> <li> Deaths : " 
+        + datas[lastSkirmish]["nbDeaths"] + " </li> </ul";
+        globalInner.classList.add("col-12", "d-flex", "justify-content-center");
+        global.appendChild(globalInner);
+        global.classList.add("row");
+        results.appendChild(global);
+        
+
+        allMapresults = document.createElement("div");
+        ebg = document.createElement("div");
+        ebg.innerHTML = "<ul> <li><b> EBG : </b></li>  <li> Ratio : " + Math.round(datas[lastSkirmish]["Center"]["ratio"] * 100)/100 + " </li> <li> Kills : " 
+        + datas[lastSkirmish]["Center"]["nbKills"] + " </li> <li> Deaths : " 
+        + datas[lastSkirmish]["Center"]["nbDeaths"] + " </li> </ul";
+        ebg.classList.add("col-3");
+        allMapresults.appendChild(ebg);
+
+        greenH = document.createElement("div");
+        greenH.innerHTML = "<ul> <li><b> Green Home : </b></li>  <li> Ratio : " + Math.round(datas[lastSkirmish]["GreenHome"]["ratio"] * 100)/100 + " </li> <li> Kills : " 
+        + datas[lastSkirmish]["GreenHome"]["nbKills"] + " </li> <li> Deaths : " 
+        + datas[lastSkirmish]["GreenHome"]["nbDeaths"] + " </li> </ul";
+        greenH.classList.add("col-3");
+        allMapresults.appendChild(greenH);
+
+        blueH = document.createElement("div");
+        blueH.innerHTML = "<ul> <li><b> Blue Home : </b></li>  <li> Ratio : " + Math.round(datas[lastSkirmish]["BlueHome"]["ratio"] * 100)/100 + " </li> <li> Kills : " 
+        + datas[lastSkirmish]["BlueHome"]["nbKills"] + " </li> <li> Deaths : " 
+        + datas[lastSkirmish]["BlueHome"]["nbDeaths"] + " </li> </ul";
+        blueH.classList.add("col-3");
+        allMapresults.appendChild(blueH);
+
+        redH = document.createElement("div");
+        redH.innerHTML = "<ul> <li><b> Red Home : </b></li>  <li> Ratio : " + Math.round(datas[lastSkirmish]["RedHome"]["ratio"] * 100)/100 + " </li> <li> Kills : " 
+        + datas[lastSkirmish]["RedHome"]["nbKills"] + " </li> <li> Deaths : " 
+        + datas[lastSkirmish]["RedHome"]["nbDeaths"] + " </li> </ul";
+        redH.classList.add("col-3");
+        allMapresults.appendChild(redH);
+        allMapresults.classList.add("row");
+        results.appendChild(allMapresults);
+      }
     }
   }
 
@@ -99,6 +153,8 @@ async function loadDatas() {
     current.skirmish=i.toString();
     current.addEventListener('click', mouseClick);
   }
+
+  globalInfos.addEventListener('click', mouseClick);
 
 
 
