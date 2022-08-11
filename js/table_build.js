@@ -154,6 +154,7 @@ async function loadDatas() {
     current.addEventListener('click', mouseClick);
   }
 
+  globalInfos.skirmish=-1;
   globalInfos.addEventListener('click', mouseClick);
 
 
