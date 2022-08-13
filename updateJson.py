@@ -36,7 +36,7 @@ def assignWinner(currentJson, apiJson):
                 else:
                     scoresDict[2] = "blue"
                     scoresDict[3] = "green"
-        except KeyError:
+        except (KeyError, IndexError) as e:
             scoresDict[1]=""
             scoresDict[2]=""
             scoresDict[3]=""
@@ -133,7 +133,7 @@ def saveJson():
                 jsonDict["skirmishRatio"] = (kills - oldKills) / (deaths-oldDeaths)
             else:
                 jsonDict["skirmishRatio"] = (kills - oldKills)
-        except KeyError:
+        except (KeyError, IndexError) as e:
             jsonDict["skirmishKills"] = 0
             jsonDict["skirmishDeaths"] = 0
             jsonDict["skirmishRatio"] = 0
@@ -167,7 +167,7 @@ def saveJson():
                     mapDict["skirmishRatio"] = (kills - oldKills) / (deaths-oldDeaths)
                 else:
                     mapDict["skirmishRatio"] = (kills - oldKills)
-            except KeyError:
+            except (KeyError, IndexError) as e:
                 mapDict["skirmishKills"] = 0
                 mapDict["skirmishDeaths"] = 0
                 mapDict["skirmishRatio"] = 0
