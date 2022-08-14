@@ -63,6 +63,16 @@ def getCurrentSkirmish(currentDateTime, weekDay):
 
     return skirmish
 
+def propertyFile(serverName, year, current_week):
+    properties= dict()
+    properties["year"] = year
+    properties["CurrentWeek"] = current_week
+    properties["Server"] = serverName
+    f = open ("results/properties.json", "w")
+    f.write(json.dumps(properties, indent = 2))
+    f.close()
+
+
 def saveJson():
 
     
@@ -83,6 +93,8 @@ def saveJson():
     if (weekDay == 5 and now > now.replace(hour = 19, minute = 45) ) or weekDay > 5:
         week_num +=1
 
+    propertyFile(jsonDict["serverName"], year, week_num)
+    
     URL = "https://api.guildwars2.com/v2/wvw/matches?world=" + str(jsonDict["idWorld"])
 
     resp = requests.get(URL)
