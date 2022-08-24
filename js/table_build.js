@@ -68,7 +68,7 @@ async function loadDatas(b=-1) {
     } else if (sk == -1) { //global infos, not skirmish infos
       var lastSkirmish = -1; 
       for (const [key, value] of Object.entries(datas)) {
-        if(parseInt(key) > lastSkirmish) {
+        if(parseInt(key) > lastSkirmish && parseInt(key) != 84) {
           lastSkirmish = parseInt(key);
         }
       }

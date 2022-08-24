@@ -45,17 +45,17 @@ def assignWinner(currentJson, apiJson):
 
 
 def getCurrentSkirmish(currentDateTime, weekDay):
-    if weekDay == 5 and currentDateTime.hour >= 20 :
-        if currentDateTime < currentDateTime.replace(hour = 21, minute = 45):
+    if weekDay == 5 and currentDateTime >= currentDateTime.replace(hour=19, minute = 50) :
+        if currentDateTime < currentDateTime.replace(hour = 21, minute = 50):
             return 0
-        elif currentDateTime < currentDateTime.replace(hour = 23, minute = 45):
+        elif currentDateTime < currentDateTime.replace(hour = 23, minute = 50):
             return 1
         else:
             return 2
 
     skirmish = 2
     timeIterator = datetime.now(pytz.timezone('Europe/Paris')) + relativedelta(weekday=SA(-1)) #last friday
-    timeIterator = timeIterator.replace(hour = 1, minute = 45, second=0) #the start of the first skirmish
+    timeIterator = timeIterator.replace(hour = 1, minute = 50, second=0) #the start of the first skirmish
 
     while timeIterator < currentDateTime:
         skirmish += 1
@@ -89,8 +89,8 @@ def saveJson():
 
     year, week_num, weekDay = now.isocalendar()
 
-    #we make the week change on friday at 19:45
-    if (weekDay == 5 and now > now.replace(hour = 19, minute = 45) ) or weekDay > 5:
+    #we make the week change on friday at 19:50
+    if (weekDay == 5 and now > now.replace(hour = 19, minute = 50) ) or weekDay > 5:
         week_num +=1
 
     propertyFile(jsonDict["serverName"], year, week_num)

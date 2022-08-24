@@ -1,7 +1,7 @@
 name: API call
 on:
   schedule:
-    - cron: '45 1/2 * * *' #call every two hours, starting at 1:45
+    - cron: '50 1/2 * * *' #call every two hours, starting at 1:45
   workflow_dispatch:
 jobs:
   Explore-GitHub-Actions:
