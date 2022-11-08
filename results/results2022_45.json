@@ -45,8 +45,8 @@
     },
     "skirmishScore": {
       "1": "red",
-      "2": "green",
-      "3": "blue"
+      "2": "blue",
+      "3": "green"
     }
   },
   "1": {
@@ -2092,6 +2092,56 @@
       "skirmishKills": 24,
       "skirmishDeaths": 74,
       "skirmishRatio": 0.32432432432432434
+    },
+    "skirmishScore": {
+      "1": "red",
+      "2": "green",
+      "3": "blue"
+    }
+  },
+  "46": {
+    "serverName": "Augury Rock",
+    "idWorld": 2103,
+    "date": "08/11/2022",
+    "time": "16:57:18",
+    "worldColor": "blue",
+    "nbKills": 26317,
+    "nbDeaths": 32470,
+    "ratio": 0.8105020018478596,
+    "skirmishKills": 401,
+    "skirmishDeaths": 342,
+    "skirmishRatio": 1.172514619883041,
+    "Center": {
+      "nbKills": 10403,
+      "nbDeaths": 11851,
+      "ratio": 0.878,
+      "skirmishKills": 306,
+      "skirmishDeaths": 254,
+      "skirmishRatio": 1.204724409448819
+    },
+    "RedHome": {
+      "nbKills": 5379,
+      "nbDeaths": 5515,
+      "ratio": 0.975,
+      "skirmishKills": 66,
+      "skirmishDeaths": 53,
+      "skirmishRatio": 1.2452830188679245
+    },
+    "BlueHome": {
+      "nbKills": 5258,
+      "nbDeaths": 8311,
+      "ratio": 0.633,
+      "skirmishKills": 19,
+      "skirmishDeaths": 22,
+      "skirmishRatio": 0.8636363636363636
+    },
+    "GreenHome": {
+      "nbKills": 5277,
+      "nbDeaths": 6793,
+      "ratio": 0.777,
+      "skirmishKills": 10,
+      "skirmishDeaths": 13,
+      "skirmishRatio": 0.7692307692307693
     },
     "skirmishScore": {
       "1": "red",
