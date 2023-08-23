@@ -27,4 +27,4 @@
 #          git config --global user.email "Valorx43@gmail.com"
 #          git add -A
 #          git commit -m "periodic commit"
-          git push
+#          git push
